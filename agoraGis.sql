@@ -1,11 +1,26 @@
 create database AgoraGis_IN5CM;
 use AgoraGis_IN5CM;
-
+create table vendedor(
+	id_vendedor int not null primary key auto_increment,
+    dpi varchar(13) not null,
+    nombre varchar(25) not null,
+    apellido varchar(25) not null,
+    telefono int not null,
+    correo varchar(50) not null,
+    direccion varchar(100) not null
+);
 create table mercado(
 	id_mercado int not null primary key auto_increment,
     nombre_mercado varchar(50) not null,
     direccion varchar(100) not null,
     telefono_administracion int not null
+);
+
+create table giro_comercial(
+	id_giro int not null primary key auto_increment,
+    nombre_giro varchar(50) not null,
+    descripcion varchar(150) not null,
+    permiso boolean not null
 );
 
 create table sector(
@@ -25,22 +40,6 @@ create table puesto(
     id_sector int not null,
     constraint FK_id_sector foreign key (id_sector) references 
 		sector(id_sector) on delete cascade
-);
-
-create table giro_comercial(
-	id_giro int not null primary key auto_increment,
-    nombre_giro varchar(50) not null,
-    descripcion varchar(150) not null,
-    requiere_permiso_especial boolean not null
-);
-
-create table vendedor(
-	id_vendedor int not null primary key auto_increment,
-    dpi varchar(13) not null,
-    nombre_completo varchar(100) not null,
-    telefono int not null,
-    correo_electronico varchar(50) not null,
-    direccion_residencia varchar(100) not null
 );
 
 create table asignacion_puesto(
