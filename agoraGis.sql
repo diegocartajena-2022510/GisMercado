@@ -1,5 +1,6 @@
 create database AgoraGis_IN5CM;
 use AgoraGis_IN5CM;
+
 create table vendedor(
 	id_vendedor int not null primary key auto_increment,
     dpi varchar(13) not null,
@@ -73,8 +74,9 @@ create table pago(
 create table usuario(
 	id_usuario int not null primary key auto_increment,
     username varchar(30) not null,
-    password_hash varchar(255) not null,
-    nombre_completo varchar(100) not null,
+    pasword varchar(30) not null,
+    nombre varchar(25) not null,
+    apellido varchar(25) not null,
     correo varchar(50) not null,
     rol enum('administrador', 'recaudador', 'inspector') not null
 );
