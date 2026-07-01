@@ -99,7 +99,7 @@ create table inspeccion(
 	id_inspeccion int not null primary key auto_increment,
     fecha_inspeccion datetime not null,
     resultado enum('aprobado', 'observaciones', 'ilegal') not null,
-    comentarios_observaciones varchar(255) not null,
+    observaciones varchar(255) not null,
     id_puesto int not null,
     id_usuario int not null,
     constraint FK_id_puesto_inspeccion foreign key (id_puesto) references 
@@ -161,7 +161,6 @@ begin
 end$$
 delimiter ;
 
-
 -- SECTOR
 
 delimiter $$
@@ -214,7 +213,6 @@ begin
     delete from sector where id_sector = p_id_sector;
 end$$
 delimiter ;
-
 
 -- PUESTO
 
@@ -272,7 +270,6 @@ begin
 end$$
 delimiter ;
 
-
 -- GIRO COMERCIAL
 
 delimiter $$
@@ -293,11 +290,11 @@ delimiter $$
 create procedure sp_giro_comercial_create(
     p_nombre_giro varchar(50),
     p_descripcion varchar(150),
-    p_requiere_permiso_especial boolean
+    p_permiso boolean
 )
 begin
-    insert into giro_comercial(nombre_giro, descripcion, requiere_permiso_especial)
-    values (p_nombre_giro, p_descripcion, p_requiere_permiso_especial);
+    insert into giro_comercial(nombre_giro, descripcion, permiso)
+    values (p_nombre_giro, p_descripcion, p_permiso);
 end$$
 delimiter ;
 
@@ -306,13 +303,13 @@ create procedure sp_giro_comercial_update(
     p_id_giro int,
     p_nombre_giro varchar(50),
     p_descripcion varchar(150),
-    p_requiere_permiso_especial boolean
+    p_permiso boolean
 )
 begin
     update giro_comercial 
     set nombre_giro = p_nombre_giro,
         descripcion = p_descripcion,
-        requiere_permiso_especial = p_requiere_permiso_especial
+        permiso = p_permiso
     where id_giro = p_id_giro;
 end$$
 delimiter ;
@@ -325,7 +322,6 @@ begin
     delete from giro_comercial where id_giro = p_id_giro;
 end$$
 delimiter ;
-
 
 -- VENDEDOR
 
@@ -346,14 +342,15 @@ delimiter ;
 delimiter $$
 create procedure sp_vendedor_create(
     p_dpi varchar(13),
-    p_nombre_completo varchar(100),
+    p_nombre varchar(25),
+    p_apellido varchar(25),
     p_telefono int,
-    p_correo_electronico varchar(50),
-    p_direccion_residencia varchar(100)
+    p_correo varchar(50),
+    p_direccion varchar(100)
 )
 begin
-    insert into vendedor(dpi, nombre_completo, telefono, correo_electronico, direccion_residencia)
-    values (p_dpi, p_nombre_completo, p_telefono, p_correo_electronico, p_direccion_residencia);
+    insert into vendedor(dpi, nombre, apellido, telefono, correo, direccion)
+    values (p_dpi, p_nombre, p_apellido, p_telefono, p_correo, p_direccion);
 end$$
 delimiter ;
 
@@ -361,18 +358,20 @@ delimiter $$
 create procedure sp_vendedor_update(
     p_id_vendedor int,
     p_dpi varchar(13),
-    p_nombre_completo varchar(100),
+    p_nombre varchar(25),
+    p_apellido varchar(25),
     p_telefono int,
-    p_correo_electronico varchar(50),
-    p_direccion_residencia varchar(100)
+    p_correo varchar(50),
+    p_direccion varchar(100)
 )
 begin
     update vendedor 
     set dpi = p_dpi,
-        nombre_completo = p_nombre_completo,
+        nombre = p_nombre,
+        apellido = p_apellido,
         telefono = p_telefono,
-        correo_electronico = p_correo_electronico,
-        direccion_residencia = p_direccion_residencia
+        correo = p_correo,
+        direccion = p_direccion
     where id_vendedor = p_id_vendedor;
 end$$
 delimiter ;
@@ -449,7 +448,10 @@ end$$
 delimiter ;
 
 
+-- ========================================================
 -- PAGO
+-- ========================================================
+
 delimiter $$
 create procedure sp_pago_read()
 begin
@@ -510,7 +512,6 @@ begin
 end$$
 delimiter ;
 
-
 -- USUARIO
 
 delimiter $$
@@ -530,14 +531,15 @@ delimiter ;
 delimiter $$
 create procedure sp_usuario_create(
     p_username varchar(30),
-    p_password_hash varchar(255),
-    p_nombre_completo varchar(100),
+    p_pasword varchar(30),
+    p_nombre varchar(25),
+    p_apellido varchar(25),
     p_correo varchar(50),
     p_rol enum('administrador', 'recaudador', 'inspector')
 )
 begin
-    insert into usuario(username, password_hash, nombre_completo, correo, rol)
-    values (p_username, p_password_hash, p_nombre_completo, p_correo, p_rol);
+    insert into usuario(username, pasword, nombre, apellido, correo, rol)
+    values (p_username, p_pasword, p_nombre, p_apellido, p_correo, p_rol);
 end$$
 delimiter ;
 
@@ -545,16 +547,18 @@ delimiter $$
 create procedure sp_usuario_update(
     p_id_usuario int,
     p_username varchar(30),
-    p_password_hash varchar(255),
-    p_nombre_completo varchar(100),
+    p_pasword varchar(30),
+    p_nombre varchar(25),
+    p_apellido varchar(25),
     p_correo varchar(50),
     p_rol enum('administrador', 'recaudador', 'inspector')
 )
 begin
     update usuario 
     set username = p_username,
-        password_hash = p_password_hash,
-        nombre_completo = p_nombre_completo,
+        pasword = p_pasword,
+        nombre = p_nombre,
+        apellido = p_apellido,
         correo = p_correo,
         rol = p_rol
     where id_usuario = p_id_usuario;
@@ -569,7 +573,6 @@ begin
     delete from usuario where id_usuario = p_id_usuario;
 end$$
 delimiter ;
-
 
 -- MULTA
 
@@ -654,13 +657,13 @@ delimiter $$
 create procedure sp_inspeccion_create(
     p_fecha_inspeccion datetime,
     p_resultado enum('aprobado', 'observaciones', 'ilegal'),
-    p_comentarios_observaciones varchar(255),
+    p_observaciones varchar(255),
     p_id_puesto int,
     p_id_usuario int
 )
 begin
-    insert into inspeccion(fecha_inspeccion, resultado, comentarios_observaciones, id_puesto, id_usuario)
-    values (p_fecha_inspeccion, p_resultado, p_comentarios_observaciones, p_id_puesto, p_id_usuario);
+    insert into inspeccion(fecha_inspeccion, resultado, observaciones, id_puesto, id_usuario)
+    values (p_fecha_inspeccion, p_resultado, p_observaciones, p_id_puesto, p_id_usuario);
 end$$
 delimiter ;
 
@@ -669,7 +672,7 @@ create procedure sp_inspeccion_update(
     p_id_inspeccion int,
     p_fecha_inspeccion datetime,
     p_resultado enum('aprobado', 'observaciones', 'ilegal'),
-    p_comentarios_observaciones varchar(255),
+    p_observaciones varchar(255),
     p_id_puesto int,
     p_id_usuario int
 )
@@ -677,7 +680,7 @@ begin
     update inspeccion 
     set fecha_inspeccion = p_fecha_inspeccion,
         resultado = p_resultado,
-        comentarios_observaciones = p_comentarios_observaciones,
+        observaciones = p_observaciones,
         id_puesto = p_id_puesto,
         id_usuario = p_id_usuario
     where id_inspeccion = p_id_inspeccion;
