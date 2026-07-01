@@ -1,5 +1,0 @@
-export enum resultado{
-    APROBADO= "APROBADO",
-    OBSERVACIONES= "OBSERVACIONES",
-    ILEGAL= "ILEGAL"
-}

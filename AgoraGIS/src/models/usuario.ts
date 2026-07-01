@@ -1,3 +1,5 @@
+import { rolUsuario } from "./enums";
+
 export interface usuario {
     id_usuario: number;
     username: string;
@@ -5,5 +7,5 @@ export interface usuario {
     nombre: string;
     apellido: string;
     correo: string;
-    rol: string;
+    rol: rolUsuario;
 }

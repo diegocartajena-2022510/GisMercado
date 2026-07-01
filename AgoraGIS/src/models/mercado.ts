@@ -3,5 +3,4 @@ export interface mercado{
     nombre_sector:string;
     direccion: string;
     telefono_administracion: number;
-
 }

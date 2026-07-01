@@ -1,4 +1,4 @@
-import { resultado } from "./resultadoInspeccion";
+import { resultado } from "./enumsEntidades";
 
 export interface inspeccion {
     id_inspeccion: number;
