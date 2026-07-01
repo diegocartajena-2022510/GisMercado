@@ -6,5 +6,4 @@ export interface pago{
     numero_recibo_municipal: number;
     estado_pago: string;
     id_asignacion:number;
-   
 }
