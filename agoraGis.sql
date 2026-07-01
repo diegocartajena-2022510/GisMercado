@@ -1,5 +1,5 @@
-create database gisMercado_IN5CM;
-use gisMercado_IN5CM;
+create database AgoraGis_IN5CM;
+use AgoraGis_IN5CM;
 
 create table mercado(
 	id_mercado int not null primary key auto_increment,
