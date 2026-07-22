@@ -10,30 +10,33 @@ export class VendedorService{
     }
 
     async agegarVendedor(vendedor:Vendedor):Promise<void>{
-        const existe= await this.repo.buscarVendedorPorId(vendedor.id_vendedor);
-        if(existe){
-            throw new Error("El vendedor ya existe");
+       const existe = await this.repo.obtenerVendedoresPorId(vendedor.id_vendedor)
+       if (existe) {
+            throw new Error("El ID ya existe.");
         }
+
         await this.repo.agregarVendedor(vendedor);
     }
 
-    async buscarVendedorPorId(id_vendedor:number):Promise<Vendedor | null>{
-        return await this.repo.buscarVendedorPorId(id_vendedor);
+    async buscarVendedorPorId(id_vendedor:number):Promise<Vendedor | undefined>{
+        return await this.repo.obtenerVendedoresPorId(id_vendedor);
     }
 
-    async actualizarVendedor(id_vendedor:number, vendedorActualizado:Vendedor):Promise<void>{
-        const existe= await this.repo.buscarVendedorPorId(id_vendedor);
-        if(existe){
-            throw new Error("El vendedor ya existe");
+    async actualizarVendedor(vendedor:Vendedor):Promise<void>{
+        const actualizado= await this.repo.actualizarVendedores(vendedor);
+
+        if(!actualizado){
+            throw new Error("el usuario no existe")
         }
-        await this.repo.actualizarVendedor(id_vendedor, vendedorActualizado);
     }
     
+    
     async eliminarVendedor(id_vendedor:number):Promise<void>{
-        const existe= await this.repo.buscarVendedorPorId(id_vendedor);
-        if(!existe){
+
+        const eliminado= await this.repo.eliminarVendedor(id_vendedor);
+        if(!eliminado){
             throw new Error("El vendedor no existe");
         }
-        await this.repo.eliminarVendedor(id_vendedor);
+        
     }
 }
