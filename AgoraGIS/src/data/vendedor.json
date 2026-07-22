@@ -1,0 +1,42 @@
+[
+  {
+    "id_vendedor": 1,
+    "nombre": "Carlos",
+    "apellido": "Mendoza",
+    "telefono": "55512345",
+    "correo": "carlos.mendoza@email.com",
+    "direccion": "Zona 10, Ciudad de Guatemala"
+  },
+  {
+    "id_vendedor": 2,
+    "nombre": "Ana",
+    "apellido": "Gómez",
+    "telefono": "55567890",
+    "correo": "ana.gomez@email.com",
+    "direccion": "Calle Roosevelt 12-45, Zona 11"
+  },
+  {
+    "id_vendedor": 3,
+    "nombre": "Luis",
+    "apellido": "Martínez",
+    "telefono": "55598765",
+    "correo": "luis.martinez@email.com",
+    "direccion": "Avenida Las Américas 4-10, Zona 14"
+  },
+  {
+    "id_vendedor": 4,
+    "nombre": "María",
+    "apellido": "López",
+    "telefono": "55543210",
+    "correo": "maria.lopez@email.com",
+    "direccion": "Sector A, San Cristóbal, Zona 8 de Mixco"
+  },
+  {
+    "id_vendedor": 5,
+    "nombre": "Jorge",
+    "apellido": "Ramírez",
+    "telefono": "55587654",
+    "correo": "jorge.ramirez@email.com",
+    "direccion": "Calzada Aguilar Batres 22-01, Zona 12"
+  }
+]
