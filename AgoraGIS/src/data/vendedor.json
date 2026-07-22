@@ -1,19 +1,12 @@
 [
   {
-    "id_vendedor": 1,
-    "nombre": "Carlos",
-    "apellido": "Mendoza",
-    "telefono": "55512345",
-    "correo": "carlos.mendoza@email.com",
-    "direccion": "Zona 10, Ciudad de Guatemala"
-  },
-  {
     "id_vendedor": 2,
-    "nombre": "Ana",
-    "apellido": "Gómez",
-    "telefono": "55567890",
+    "nombre": "hola",
+    "apellido": "saber",
+    "telefono": "saber",
     "correo": "ana.gomez@email.com",
-    "direccion": "Calle Roosevelt 12-45, Zona 11"
+    "direccion": "Calle Roosevelt 12-45, Zona 11",
+    "id": 2
   },
   {
     "id_vendedor": 3,
