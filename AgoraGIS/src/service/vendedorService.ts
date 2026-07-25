@@ -17,4 +17,13 @@ export class VendedorService{
         return await this.repo.agregarVendedor(vendedor);
     }
 
+    async editarVendedores(id:number, vendedor:Partial<Vendedor>){
+        return await this.repo.EditarVedendor(id,vendedor);
+    }
+
+    async eliminarVendedores(id:number){
+        return await this.repo.EliminarVendedor(id);
+    }
+    
+
 }
