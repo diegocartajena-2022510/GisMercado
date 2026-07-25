@@ -1,19 +1,19 @@
-import { createServer } from "http";
-import { router } from "./router";
+import express from 'express';
+import router from './router';
 
 export const EmpezarServer = () => {
-    const servidor = createServer(async(req, res) => {
-        await router(req, res);
-    });
+  const app = express();
 
-    servidor.listen(3000, () => {
-        console.log("===================================");
+  app.use(express.json());
 
-        console.log("Servidor iniciado");
+  app.use('/api', router);
 
-        console.log("http://localhost:3000");
+  const PORT = process.env.PORT || 3000;
 
-        console.log("===================================");
-    });
-
-}
+  app.listen(PORT, () => {
+    console.log("=========================================");
+    console.log(`Servidor iniciado en Express`);
+    console.log(`http://localhost:${PORT}`);
+    console.log("=========================================");
+  });
+};
