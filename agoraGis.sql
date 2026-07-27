@@ -7,7 +7,7 @@ use AgoraGis_IN5CM;
 
 create table vendedor(
     id_vendedor int not null primary key auto_increment,
-    dpi int not null, -- Configurado como INT
+    dpi int not null,
     nombre varchar(25) not null,
     apellido varchar(25) not null,
     telefono int not null,
@@ -337,7 +337,7 @@ end$$
 delimiter ;
 
 -- ========================================================
--- VENDEDOR (PROCEDIMIENTOS ACTUALIZADOS CON INT)
+-- VENDEDOR
 -- ========================================================
 
 delimiter $$
@@ -716,3 +716,6 @@ begin
     delete from inspeccion where id_inspeccion = p_id_inspeccion;
 end$$
 delimiter ;
+
+
+COMMIT;
