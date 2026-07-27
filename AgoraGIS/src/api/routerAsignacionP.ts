@@ -40,15 +40,35 @@ router.post('/asignacionPuesto',async (req:Request,res:Response)=>{
 
 router.put('/asignacionPuesto/:id',async(req:Request,res:Response)=>{
     try{
+        const asignacionPE=req.body;
         const id= Number(req.params.id);
         const asignacionExistente= service.buscarAsignacion(id);
         if(!asignacionExistente){
             res.status(404).json({mensaje:"asignacion no encontreada"});
             return;
         }
-        res.status(202).json({mensaje:"usuario editado correctamente"});
+        await service.editarAsignacion(id,asignacionPE);
+        res.status(202).json({mensaje:"aignacion editada correctamente"});
     }catch(error:any){
         res.status(500).json({mensaje:error.message})
+    }
+});
+
+// eliminar 
+
+router.delete('/asignacionPuesto/:id', async (req: Request, res: Response)=>{
+    try{
+        const id=Number(req.params.id);
+
+        const AsignacionExistente= await service.buscarAsignacion(id);
+        if(!AsignacionExistente){
+            res.status(404).json({mensaje: "asignacion no encontrada"});
+            return;
+        }
+        await service.eliminarAsignacion(id);
+        res.status(202).json({mensaje: "asignacion eliminada correctamente"});
+    }catch(error:any){
+        res.status(500).json({mensaje:error.message});
     }
 });
 

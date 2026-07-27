@@ -1,4 +1,4 @@
-import { asignacionPRepository } from "../data/asignacionP";
+import { asignacionPRepository } from "../data/asignacionPRepository";
 import { asignacion_puesto } from "../models/asignacion_puesto";
 
 export class asignacionPService{
