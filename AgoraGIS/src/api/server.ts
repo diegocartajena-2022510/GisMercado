@@ -14,7 +14,7 @@ export const EmpezarServer = () => {
 
   app.use(express.json());
 
-  app.use('/api', routerVendedor,routerAsignacion,routerGiroC,routerMercado,
+  app.use( routerVendedor,routerAsignacion,routerGiroC,routerMercado,
     routerSector,routerPuesto,routerPago,routerUsuario,routerMulta,routerInspeccion);
 
   const PORT = process.env.PORT || 3000;

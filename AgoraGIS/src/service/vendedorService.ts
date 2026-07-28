@@ -17,8 +17,7 @@ export class VendedorService {
             { nombre: 'nombre', valor: vendedor.nombre },
             { nombre: 'apellido', valor: vendedor.apellido },
             { nombre: 'correo', valor: vendedor.correo },
-            { nombre: 'direccion', valor: vendedor.direccion },
-            { nombre: 'telefono', valor: vendedor.telefono }
+            { nombre: 'direccion', valor: vendedor.direccion }
         ];
 
         for (const campos of campostexto) {
