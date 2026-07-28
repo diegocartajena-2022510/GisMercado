@@ -34,7 +34,7 @@ router.post('/usuario',async (req:Request,res:Response)=>{
         await service.agregarUsuario(usuarioCreado);
         res.status(200).json({mensaje:"usuario creado correctamente"});
     }catch(error:any){
-        res.status(500).json({mensaje:error.mensaje});
+        res.status(500).json({mensaje:error.message});
     }
 });
 
