@@ -48,4 +48,13 @@ export class usaurioRepository{
         ]
         await db.query(query,params);
     }
+    async buscarPorCorreo(correo:string): Promise<usuario |null>{
+        const [rows]: any= await db.query('SELECT * FROM usuario WHERE correo =?',
+            [correo]);
+
+        if(!rows || rows.length===0){
+            return null;
+        }
+        return rows[0] as usuario;
+    }
 }

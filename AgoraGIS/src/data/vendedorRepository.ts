@@ -52,6 +52,16 @@ export class VendedorRepository{
       ];
       await db.query(query,params);
     }    
+
+    async buscarPorCorreo(correo:string): Promise<Vendedor |null>{
+        const [rows]: any= await db.query('SELECT * FROM vendedor WHERE correo =?',
+            [correo]);
+
+        if(!rows || rows.length===0){
+            return null;
+        }
+        return rows[0] as Vendedor;
+    }
 }
 
 
